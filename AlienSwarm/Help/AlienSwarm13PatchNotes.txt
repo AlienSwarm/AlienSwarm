@@ -1,0 +1,53 @@
+===========================
+Alien Swarm 1.3 Patch Notes
+===========================
+
+These maps have been updated to fix various bugs and exploits:
+
+Sigma - Uplink
+Sigma - Salvage
+Sigma - Rescue
+Sigma - Barracks
+Sigma - Research
+Sigma - Salvage
+Ortega - Boarding
+Ortega - Engineering
+Ortega - Navigation
+
+Changes:
+Decompression kills are shared equally between live marines (counting as assisted kills).
+Suiciding while infested is no longer a good idea.
+The Swarm Queen is now capable of smashing Sentry guns.
+Hand grenades now have a wider area of effect and will detonate when passing close to aliens.
+Medics will see injured marines with a flashing red name.
+Heal effect changed to give instant feedback.
+Empty servers will reset to the Sigma campaign (there is a server setting to disable this if desired).
+
+Misc. fixes:
+Anime smiley works in a multiplayer game.
+Voice chat will join correctly.
+Fixed texture level of detail settings on various interface textures.
+Fixed a campaign rarely getting stuck on the lobby with all missions complete.
+Flares now correctly burn out on a dedicated server.
+The MaxIdleTime server setting will no longer kick spectators.
+Deselect marine button no longer interferes with campaign levelling up at widescreen resolutions.
+
+Changes for custom maps and campaigns:
+Players can start and load custom campaigns from the main menu.
+Custom campaign vote mutator (by Smattbac & Butters) included by default, so players can start and load custom campaigns from in-game.
+Mappers can restrict equipment on a per map basis.
+Mappers can add custom equipment on a per map basis.
+All weapons use the AoHelper function for setting things on fire.
+Ammo dropping function moved inside the Ammo bag class to better support custom Ammo bags (like in Telic).
+Any music with "AllowStim" at the end of the song title can be played alongside a Stim.
+No longer able to carry two SIZE_Large items.
+Added a bBastille variable to make custom equipment only Bastille can use.
+
+
+=====================================
+
+ http://www.blackcatgames.com/swarm/
+
+     (c) 2005 Black Cat Games
+
+=====================================

@@ -1,0 +1,398 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+ <head>
+    <title>Alien Swarm for Linux tutorial</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15" />
+		<style type="text/css" media="all">@import "swarm.css";</style>
+		<link rel="stylesheet" type="text/css" media="print" href="print.css" />
+		<!-- Make sure Microsoft Internet Exploder gets a menu too. Plus a style adjustment to the body because margins suck in MSIE.-->
+		<!--[if IE]><style type="text/css">body{margin-right: 17em;}#nav{position:absolute;}</style><![endif]-->
+  </head>
+	
+    <body id="top">
+	
+	<p class="hide"><a href="#nav" class="hide">Go to navigation menu</a></p>
+    
+	<h1>Alien Swarm for Linux</h1>
+	
+	<div id="content">
+	<p>This tutorial will try to describe shortly how to install Alien Swarm for Linux. It will also give information on how 
+	to run a dedicated server from bash, making sure it restarts if it crashes and which ports you need to open on your firewall 
+	to make it run properly.</p>
+	
+	<h2 id="installing">Installing Alien Swarm</h2>
+	
+	<p>Make sure you have Unreal Tournament 2004 installed. Doesn't matter where. (It resides in 
+	<var>/opt/ut2004</var> for me.)</p>
+	<p>Then make sure you download and install 
+	<a href="http://download.beyondunreal.com/fileworks.php/official/ut2004/ut2004-lnxpatch3204.tar.bz2" 
+	title="Download the latest patch from beyondunreal.com">patch 3204 </a>.</p> 
+	
+	<p>If you downloaded the non-umod file, then unzip the contens of the zip package to the <var>/ut2004/</var> directory so Alien Swarm will be in
+	it's on directory, <var>/ut2004/AlienSwarm</var> and run the executable script which is described a little more down below.</p>
+	
+	<p>If you downloaded the umod version of the file, unzip the contents to a temporary directory and copy the <var>AlienSwarm_v1.ut4mod</var> and <var>as-linux-installer.sh</var> files to <var>/ut2004/System/</var> then
+	open a terminal and type <kbd>sh ./as-linux-installer.sh</kbd> in the directory <var>/ut2004/System/</var> and 
+	the installer will unpack Alien Swarm.</p>
+	
+	<p>You can also <a href="http://prdownloads.sourceforge.net/liflg/alien.swarm_1.0-english.run" title="Download the graphical installer for Linux. Total size of download is 99MB.">download a graphical installer</a> for Linux which is made by <a href="http://liflg.sourceforge.net/" title="A site made by a few people that make installers for games. Be it native ports or run via WineX emulation.">Loki Installers for Linux Gamers</a>. To run it, just type <kbd>sh alien.swarm_1.0-english.run</kbd>.</p>
+	<p>(Note: This installer comes with a different executable, you need to type <kbd>./alienswarm</kbd> instead of the command below to run AS.)</p>
+	
+	<p>To run Alien Swarm, execute the Swarm Linux executable by typing <kbd>sh ./Alien-Swarm-Linux</kbd> when you are
+	in the <var>/ut2004/System/</var> directory.</p>
+	
+	
+	
+	<h2 id="ports">Opening server ports</h2>
+	
+	<p>The default ports are:</p>
+	
+	<table summary="ports and their explanation">
+		<tbody>
+			<tr>
+			  <th scope="col">Port</th>
+			  <th scope="col">Description</th>
+			</tr>
+			<tr><td>7777 <abbr title="User Datagram Protocol">UDP</abbr>/IP</td><td>Game Port</td></tr>
+			<tr><td>7778 UDP/IP</td><td>Query Port</td></tr>
+			<tr><td>7787 UDP/IP</td><td>GameSpy uplink</td></tr>
+			<tr><td>28902 <abbr title="Transmission Control Protocol">TCP</abbr>/IP</td><td>Master Server uplink</td></tr>
+		</tbody>
+	</table>
+	
+	<p>If you are using <a href="http://www.iptables.org/" title="IPtables, an IP packet filter administration program">IPtables</a> you 
+	can use these commands to open ports to your server(make sure you are root before you enter these commands.):</p>
+	
+	<p class="mark">
+	iptables -A INPUT -i eth0 -p udp -m multiport --dport 7777,7778,7787 -j ACCEPT<br />
+	iptables -A INPUT -i eth0 -p tcp --dport 28902 -j ACCEPT<br />
+	</p>
+	
+	<p>If you are using <a href="http://shorewall.net" title="Shorewall, another IP packet filter administration program">Shorewall</a> 
+	can add these two lines to your <var>/etc/shorewall/rules</var> file:</p>
+	
+	<p class="mark">
+	ACCEPT         net             fw        udp   7777,7778,7787,7788<br />
+	ACCEPT         net             fw        tcp   28902<br />
+	</p>
+	
+	<p>Note: You don't need to open 28902 and 7787 if you don't intend to run an advertised server. If you want to run the 
+	webadmin client, you should open another port for this, for example, tcp port 8888. Don't forget to add this port number 
+	to your AlienSwarm.ini file.</p>
+	
+	
+	
+	<h2 id="server-commands">Starting an Alien Swarm Linux dedicated server from the command line</h2>
+	
+	<p>If you want to run a dedicated server without having to use the Graphical menus, you can use the following commands in a terminal.</p>
+	
+	<p>To start a new campaign server use:</p>
+	<p class="mark"><kbd>./ucc-bin server AOL-CampaignLobby.ut2?CampaignSlot=#?NewGame=Yes?SlotName=$ -mod=AlienSwarm</kbd></p>
+	
+	<p>The hash (#) in the above command is a number between 0 and 11 and the dollar sign is the name for your slot.</p>
+	
+	<p>To resume the previously played campaign game. Where hash (#) is the slotnumber of the game you want to restore:</p>
+	<p class="mark"><kbd>./ucc-bin server AOL-CampaignLobby.ut2?CampaignSlot=#?NewGame=No -mod=AlienSwarm</kbd></p>
+	
+	<p>If you just want to make the server play a single map, you can use:</p>
+	<p class="mark"><kbd>./ucc-bin server <var>map-name</var> -mod=AlienSwarm</kbd></p>
+	
+	<p>Note: The <kbd>ucc-bin</kbd> commands must be executed from the <var>ut2004/System</var> directory. If you prefer <em>not</em> 
+	to use an ordinary user for running your server you could use the tag <kbd>-nohomedir</kbd> after the start-up commands. This 
+	prevents directory creation in your Home directory. Alien Swarm will then use the settings it finds in <var>/AlienSwarm/System/</var>.</p>
+	
+	<h3 id="custom-ini-files">Using custom ini files</h3>
+	
+	<p>If you want to use custom ini files, for use with two or more servers on one machine, you can use the following command to point to these ini files.</p>
+	
+	<p class="mark"><kbd>./ucc-bin server <var>map-name</var> -ini=../AlienSwarm/System/AlienSwarm.ini -userini=../AlienSwarm/System/AlienSwarmUser.ini</kbd></p>
+	
+	<h3 id="restart-script">Restart script</h3>
+	
+	<p>When an UT2004 server crashes, it doesn't restart by itself. So I will provide you with a little script that does
+	this for you. To make the script follow these short steps:</p>
+	<ol>
+	  <li>Open a terminal window and go to the <var>/ut2004/AlienSwarm/</var> directory.</li>
+	  <li>Type <kbd>touch start-service</kbd></li>
+	  <li>Type <kbd>chmod +x start-service</kbd></li>
+	  <li>Then open <var>start-service</var> in a text editor and copy and paste the following text:
+	  
+	  <p class="mark"><code>#!/bin/sh<br />
+	  GAMEPATH=/path/to/where/you/installed/ut2004/<br />
+	  <br />
+	  while true<br />
+	  do<br />
+	  ${GAMEPATH}./ucc-bin server AO-ReactorCore.ut2 -mod=AlienSwarm -nohomedir<br />
+	  echo "Server crashed on " >> ${GAMEPATH}/crash.log<br />
+	  echo `date +%Y-%m-%d_%H.%M` >> ${GAMEPATH}/crash.log<br />
+	  done<br /></code></p>
+	  </li>
+	  <li>Change the <code>GAMEPATH=</code> part to match where you installed ut2004</li>
+	  <li>Save this file and exit the editor program.</li>
+	  <li>Then type <kbd>sh ./start-service</kbd> to start the server.</li>
+	</ol>
+	
+	<p>You could edit the game type in this script to make it run a campaign server. Or you could let it restart as a single map 
+	game server, since people can always vote to start a new campaign, this game is stored in the last slot (slot 11). It gets overwriten 
+	when someone calls a vote to start a new campaign.</p>
+	
+	<a href="#top" title="To the top of this document.">&uarr; top</a>
+	
+	<h2 id="server-settings">Changing server settings</h2>
+	
+	<p>There are two ways to change settings for your server:</p>
+	<ul>
+	  <li>You use the menu that you can access in-game. Best use this for setting up a server quickly.</li>
+	  <li>You can edit ini files for more control.</li>
+	</ul>
+	
+	<p>First I'll explain about the server settings menu you can find in-game.</p>
+	<a href="server-settings-screen.jpg"><img src="server-settings-screen_small.jpg" alt="Server settings screenshot. Click to enlarge." />
+	<br />Enlarged version of this screenshot.</a>
+	
+	<p>When you access this menu (Host Multiplayer &rarr; Server settings) you get shown a few options. What you need to fill in here 
+	should also be pretty obvious (hopefully!) but I'll go through it anyway.</p> 
+	
+	<dl>
+	  <dt>Server name</dt> <dd>The name that will show up in the server browser</dd>
+	  <dt>Admin name</dt> <dd>Your name or nickname.</dd>
+	  <dt>Admin password</dt> <dd>The password that you enter to become administrator.</dd>
+	  <dt>Admin email</dt> <dd>The email adress you want to give out to people so they can send you emails about possible problems they 
+	  may have with your server.</dd>
+	  <dt>Game password</dt> <dd>If you put a password in this field, people need to enter a password if they want to access your server. 
+	  Leave blank, if you want to allow anyone to come in your server.</dd>
+	  <dt>Advertise server</dt> <dd>What this option does is basically make your server show up in the server browser.</dd>
+	  <dt>Allow midgame Joins</dt> <dd>Switch this on if you want people to be able to enter midgame. They cannot select a marine yet and 
+	  have to spectate for as long as the round lasts.</dd>
+	  <dt>Max players</dt> <dd>The game defaults to 6 players max, though this can be increased to 8 if you have the bandwidth.  We 
+	  recommend games of 4&#8211;6 players for gameplay purposes, any more than that and it tends to get very crowded with a loss of teamwork.</dd>
+	</dl>
+	
+	<a href="#top" title="To the top of this document.">&uarr; top</a>
+	
+	
+	<h2 id="alienswarm"><code>AlienSwarm.ini</code></h2>
+	
+	<p>Now for the more advanced stuff. Tweaking your AlienSwarm.ini file. Either your home directory or 
+	(if you used the <kbd>-nohomedir</kbd> switch) the <var>ut2004/System</var> directory.</p>
+	
+	<p>I will provide samples sections from AlienSwarm.ini here and describe what the settings do in each section.</p>
+	
+	<h3 id="do-uplink"><code>[IpDrv.MasterServerUplink]</code></h3>
+	
+	<p class="mark">
+	[IpDrv.MasterServerUplink]<br />
+	DoUplink=True<br />
+	UplinkToGamespy=True<br />
+	SendStats=True<br />
+	ServerBehindNAT=False<br />
+	DoLANBroadcast=True<br />
+	</p>
+	
+	<dl>
+	<dt>DoUplink</dt>
+	<dd>When this is set to true, your server will show up in the server browser.</dd>
+	
+	<dt>UplinkToGameSpy</dt>
+	<dd>If you want your server to show on the gamespy server browsers, set this to true.</dd>
+	
+	<dt>SendStats</dt>
+	<dd>This will send stats to a stats server, but Alien Swarm does not support this so it's currently useless.</dd>
+	
+	<dt>ServerBehindNAT</dt>
+	<dd>Try setting this to true if your server is behind a NAT/MASQ router and people are having problems connecting to your server.</dd>
+	
+	<dt>DoLANBroadcast</dt>
+	<dd>This makes the server show up under the LAN tab for other pc's on your lan if true.</dd>
+	</dl>
+	
+	<a href="#top" title="To the top of this document.">&uarr; top</a>
+	
+	<h3 id="server-info"><code>[Engine.GameReplicationInfo]</code></h3>
+	
+	<p class="mark">
+	[Engine.GameReplicationInfo]<br />
+	ServerName=Alien Swarm Server<br />
+	ShortName=AS Server<br />
+	ServerRegion=0<br />
+	AdminName=<br />
+	AdminEmail=<br />
+	MessageOfTheDay=<br />
+	</p>
+	
+	<dl>
+	<dt>ServerName</dt>
+	<dd>Obviously, the name of the server as you want it to appear on the server browser.</dd>
+	
+	<dt>ShortName</dt>
+	<dd>Still need to fill in.</dd>
+	
+	<dt>ServerRegion</dt>
+	<dd>This is used by Gamespy servers to group servers according to the region servers are in.</dd>
+	
+	<dt>AdminName</dt>
+	<dd>Your name that shows up in the server info window.</dd>
+	
+	<dt>AdminEmail</dt>
+	<dd>Your email adress that people can use to send you emails about the possible problems they experience with your server.</dd>
+	
+	<dt>MessageOfTheDay</dt>
+	<dd>You can put a short message here that shows when the game starts.</dd>
+	</dl>
+	
+	<a href="#top" title="To the top of this document.">&uarr; top</a>
+	
+	<h3 id="web-admin"><code>[UWeb.WebServer]</code></h3>
+	
+	<p class="mark">
+	[UWeb.WebServer]<br />
+	Applications[0]=xWebAdmin.UTServerAdmin<br />
+	ApplicationPaths[0]=/ServerAdmin<br />
+	Applications[1]=xWebAdmin.UTImageServer<br />
+	ApplicationPaths[1]=/images<br />
+	bEnabled=False<br />
+	ListenPort=80<br />
+	</p>
+	
+	<p>The only lines of interest underneath <code>[UWeb.WebServer]</code> are:</p>
+	
+	<dl>
+	<dt>bEnabled</dt>
+	<dd>Setting it to true enabled the web admin server.</dd>
+	
+	<dt>ListenPort</dt>
+	<dd>Set this to the port you opened earlier for the web admin to run on.</dd>
+	</dl>
+	
+	<a href="#top" title="To the top of this document.">&uarr; top</a>
+	
+	<h3 id="game-settings"><code>[AoPrototype.AoServerSettings]</code></h3>
+	
+	<p class="mark">
+	[AoPrototype.AoServerSettings]<br />
+	Difficulty=5<br />
+	bAllowMidgameJoins=True<br />
+	bWoundedMarinesSitOut=False<br />
+	bRestartDedicatedIfAllPlayersLeave=True<br />
+	bFairMarineRules=True<br />
+	bHackNotify=True<br />
+	VoteTimeout=120<br />
+	VotePercentage=0.650000<br />
+	bCameraPrediction=True<br />
+	</p>
+	
+	<p>The part below it changes each time people in your server get different guns from the loadout screen. Changing stuff here 
+	is pretty pointless, since any change you make is undone as soon as someone puts something in one of their three slots.</p>
+	
+	<dl>
+	<dt>Difficulty</dt>
+	<dd>This sets the difficulty of the current game. You can set a difficulty of 1 up to 10. More difficulty affects alien 
+	health and melee damage. The leader can change the difficulty and if marines have to wait one round after
+	getting wounded in game.</dd>
+	
+	<dt>bAllowMidgameJoins</dt>
+	<dd>If you set this to True (default) people can join your games when they are already in progress. They cannot join when it's set
+	to false.</dd>
+	
+	<dt>bWoundedMarinesSitOut</dt>
+	<dd>If this is set to true, marines have to wait one round to heal after getting wounded in the previous game.</dd>
+	
+	<dt>bRestartDedicatedIfAllPlayersLeave</dt>
+	<dd>Setting this to true restarts the server after everyone leaves.</dd>
+	
+	<dt>bFairMarineRules</dt>
+	<dd>Only allowed 1 marine each if there are 4 or more players.</dd>
+	
+	<dt>bHackNotify</dt>
+	<dd>Setting this to true will notify players when a tech marine starts hacking, when the hack is at 50% and when the 
+	hack is complete.</dd>
+	
+	<dt>VoteTimeout</dt>
+	<dd>This sets the amount of time in seconds that it takes for a vote to time out.</dd>
+	
+	<dt>VotePercentage</dt>
+	<dd>This controls the amount of influence a vote has.</dd>
+	
+	<dt>bCameraPrediction</dt>
+	<dd>This makes the server anticipate the camera panning of players, setting it to false will save bandwidth but will result 
+	in 'pop up' for the players in certain spots.</dd>
+	</dl>
+	
+	<a href="#top" title="To the top of this document.">&uarr; top</a>
+	
+	
+	<h2 id="notes">Additional notes</h2>
+	
+	<ul>
+	   <li>You might experience problems with starting a dedicated server from the graphical menus, a listen server works fine though. We 
+	   recommend that you use a terminal to start a dedicated server. (This is most likely an UT2004 bug and we are currently investigating 
+	   the possible cause.)</li>
+	   <li>If you place a new custom map in <var>AlienSwarm/Maps</var> and start the server, it will export the map and try to start the 
+	   server or client. On the linux client when it exports the map and tries to start the game it will crash with an error saying 
+	   something like: 
+	   <p class="mark">
+		foo@foobar System $ <kbd>sh ./Alien-Swarm-Linux</kbd><br />
+		<samp>Exporting AO-{mapname}.....Successful!<br />
+		WARNING: ALC_EXT_capture is subject to change!<br />
+		_X11TransSocketOpen: socket() failed for local<br />
+		_X11TransSocketOpenCOTSClient: Unable to open socket for local<br />
+		_X11TransOpen: transport open failed for local/{your-hostname}:0<br />
+		pause_audiodevice stubbed for 0x3<br />
+		pause_audiodevice stubbed for 0x3<br />
+		Couldn't set video mode: Could not create GL context<br />
+		<br />
+		History:<br />
+		Exiting due to error</samp><br />
+	   </p>
+	   <p>This is possibly a Linux UT2004 bug because it doesn't happen for the windows version. Should it crash, just restart it again and 
+	   it will start up as normal.</p>
+	   </li>
+	   <li>The webadmin can be used, but it's not customized for Alien Swarm. You can still use it to say stuff to players in game, kick 
+	   &amp; ban players, restart the server,etc.</li>
+	   <li>If you get an error saying something like:
+	   <p class="mark">
+	   <samp>Failed to enter AlienSwarmStartup.ut2: Can't find file 'AlienSwarmStartup.ut2'<br />
+	   <br />
+	   History:<br />
+	   <br />
+	   Exiting due to error<br /></samp>
+	   </p>
+	   then you didn't patch ut2004 to version 3204. Version 3204 alters the way the ini files handles paths and Alien Swarm uses the new path handling. If you get this error, you need to delete <var>AlienSwarm.ini</var>, then patch and restart the mod. Then it should work as normal.</li>
+	   <li>If you have a server that can use multiple IPs you can use the <kbd>-multihome=</kbd> switch in the ucc-bin command line to tell ucc which IP to use for this server. If you are looking for more information about how to run multiple servers on one machine, there is <a href="http://www.unrealadmin.org/forums/showthread.php?t=36#MultipleInternet" title="More information about how to run multiple servers on one machine.">a detailed guide</a> on unrealadmin.org</li>
+	   <li>In Alien Swarm v1, some additional ini files were used (AoServer.ini, AoCampaignGame.ini, AoBestScores.ini), however in 1.1 and above, all these settings were moved into the AlienSwarm.ini to support multiple servers on one machine.</li>   
+	</ul>
+	
+	<a href="#top" title="To the top of this document.">&uarr; top</a>
+	
+	<address>
+	Made by <a href="http://www.blackcatgames.com/forums/member.php?u=102" title="Omega's contact information.">Omega</a>.
+	</address>
+	
+	</div>
+	
+	<div id="nav">
+		<ul>
+			<li class="no-circle">Menu</li>
+			<li><a href="#installing" title="Some clues on how to get Alien Swarm up and running.">Installation</a></li>
+			<li><a href="#ports" title="Which ports do I need to open if I want to run a server? Find out here.">Server ports</a></li>
+			<li><a href="#server-commands" title="How exactly do I start a server? Server commands explained here.">Server commands</a>
+			  <ul>
+			  	<li><a href="#custom-ini-files" title="Want to run multiple servers on one machine? Use this command to point to each ini.">Custom ini files</a></li>
+				<li><a href="#restart-script" title="A small script that will restart the server if it crashes.">Restart script</a></li>
+			  </ul>
+			</li>
+			<li><a href="#server-settings" title="So how do I change the settings of my server? Settings explained.">Server settings</a></li>
+			<li><a href="#alienswarm" title="The most important settings of AlienSwarm.ini described."><code>AlienSwarm.ini</code></a>
+			  <ul>
+				<li><a href="#do-uplink" title="The most important settings of the [AoPrototype.AoServerSettings] in AlienSwarm.ini described here.">Advertising</a></li>
+				<li><a href="#server-info" title="With these options you can set your server name, admin name, message of today, etc.">Server info</a></li>
+				<li><a href="#web-admin" title="Which options can I set for my web admin?">Web admin</a></li>
+				<li><a href="#game-settings" title="Settings like difficulty, vote options, how to handle wounded marines.">Game settings</a></li>
+			  </ul>
+			</li>
+			<li><a href="#notes" title="Little tidbits of info about stuff you may run into running Alien Swarm.">Additional notes</a></li>
+		</ul>
+	</div>
+	
+    </body>
+</html>

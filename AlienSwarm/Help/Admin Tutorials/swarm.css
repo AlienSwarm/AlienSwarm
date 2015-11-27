@@ -1,0 +1,31 @@
+body{margin: 2em 20em 0 2em;}
+img {border:none;}
+
+h1 {text-align: center;}
+h2 {font-size: 1.3em;}
+h3 {font-size: 1.1em;}
+.mark, dt{font-family: Monospace;}
+
+ol li{list-style-type:circle;}
+.no-circle{list-style-type:none;}
+
+th, td {
+  border: 1px solid;
+  padding: 5px;
+}
+
+#nav, .mark {
+  background: #D4D4F0;
+  color: #000000;
+  border: 1px solid #000000;
+  padding: .4em;
+}
+
+#nav {
+  position:fixed;
+  top: 5em;
+  right: 2em;
+  padding: .5em;
+}
+abbr{cursor:help;}
+.hide{display:none;}

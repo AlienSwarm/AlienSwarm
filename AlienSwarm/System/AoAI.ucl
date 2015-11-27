@@ -1,0 +1,1 @@
+Mutator=(ClassName=AoAI.AoAlienPawnSpawnerMutator,IconMaterialName=MutatorArt.nosym,FriendlyName=AoAI.AoAlienPawnSpawnerMutator.FriendlyName,Description=AoAI.AoAlienPawnSpawnerMutator.Description,FallbackName="AoAlienPawnSpawnerMutator",FallbackDesc="AoAlienPawnSpawnerMutator")

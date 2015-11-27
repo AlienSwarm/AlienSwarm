@@ -1,0 +1,1 @@
+Mutator=(ClassName=AoCustCamp.MutCustomCampaign,GroupName=CustomCampaign,IconMaterialName=MutatorArt.nosym,FriendlyName=AoCustCamp.MutCustomCampaign.FriendlyName,Description=AoCustCamp.MutCustomCampaign.Description,FriendlyName=AoCustCamp.MutCustomCampaign.FriendlyName,FallbackName="Custom Campaigns",FallbackDesc="Adds custom campaign to the voting options.")

@@ -1,0 +1,4 @@
+Game=(ClassName=AoInterface.AoCampaignLobbyGame,GameName=AoInterface.AoCampaignLobbyGame.GameName,TeamGame=0,GameAcronym=AOL,MapPrefix=AOL-,Description=AoInterface.AoCampaignLobbyGame.Description,FallbackName="Alien Swarm Campaign Lobby",FallbackDesc="Lobby where Commanders decide upon their next mission in the campaign")
+Game=(ClassName=AoInterface.AoCinematicGame,GameName=AoInterface.AoCinematicGame.GameName,TeamGame=0,Description=AoInterface.AoCinematicGame.Description,FallbackName="Game",FallbackDesc="Game")
+Game=(ClassName=AoInterface.AoCreditsGame,GameName=AoInterface.AoCreditsGame.GameName,TeamGame=0,Description=AoInterface.AoCreditsGame.Description,FallbackName="Game",FallbackDesc="Game")
+Game=(ClassName=AoInterface.AoIntroGame,GameName=AoInterface.AoIntroGame.GameName,TeamGame=0,Description=AoInterface.AoIntroGame.Description,FallbackName="Game",FallbackDesc="Game")

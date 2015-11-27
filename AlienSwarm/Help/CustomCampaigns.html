@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+<head>
+  <meta http-equiv="content-type"
+ content="text/html; charset=iso-8859-1">
+  <title>Custom campaign Mutator v1.5</title>
+  <style type="text/css">
+  .ucc_command { font-family: Courier New,Courier,monospace;
+    font-size: small;
+    font-style: italic;
+    color: rgb(0, 0, 0);
+    font-weight: normal;
+    }
+
+  .menu { margin: 0pt;
+    padding-left: 10px;
+    padding-bottom: 15px;
+    font-weight: bold;
+    font-size: larger;
+    color: rgb(0, 0, 0) ! important;
+    }
+
+  .menulink { font-weight: inherit;
+    font-style: normal;
+    color: rgb(0, 0, 0) ! important;
+    text-decoration: none ! important;
+    }
+
+  .menulink:hover { text-decoration: underline ! important;
+    }
+
+
+  </style>
+</head>
+<body>
+<h2>Custom Campaign Mutator v1.5 (Asw v1.3 version)
+Readme</h2>
+<div class="menu a"><a class="menulink" href="#Description">1.
+Description</a><br>
+<a class="menulink" href="#Installation">2.
+Installation</a><br>
+<a class="menulink" href="#How_to_use">3.
+How to use</a><br>
+<a class="menulink" href="#History">4.
+History</a><br>
+<a class="menulink" style="color: rgb(0, 0, 0);" href="#Credits">5.
+Credits &amp; Contact</a></div>
+<span style="font-weight: bold;">1.
+<a name="Description"></a>Description</span><br>
+This mutator adds support for custom campaigns in Alienswarm. You can
+either create one yourself or select the predefined Upsilon campaign.<br>
+<br>
+There are also the <a href="http://forums.blackcatgames.com/showthread.php?p=126139#post126139">Phalanx</a> and <a href="http://www.telic-campaign.com/">Telic</a> campaign which you can (and should!) install and play.<br>
+<span style="font-weight: bold;"><br>
+2.
+<a name="Installation"></a>Installation</span><br>
+The mutator is automatically installed when you install Alienswarm v1.3.<br>
+If you have an old version of the mutator (e.g. AoCustCamp140.u) you can delete those files.<br>
+<span style="font-weight: bold;">
+<br>
+<a name="How_to_use"></a>3.
+How to use</span><br>
+The mutator is automatically loaded when you start Alienswarm.<br>
+<br>
+Creating your own campaign involves subclassing the AoCCampaignInfo class in AoCustCamp.u, and filling in the defaultproperties and making link lines for the lobby map. Feel free to extract the source and examine how it's done. And remember that you need an MyCampaign.int file to accompany your MyCampaign.u file.<br></span>
+
+<br>
+<span style="font-weight: bold;">4. <a name="History"></a>History<br>
+</span><span style="font-style: italic;">November 25th 2005 - v1.5</span><br>
+-mutator now included with Alienswarm v1.3<br>
+-added an extra string variable to extraslots for saving miscellaneous things<br>
+-changed how the unlock map triggering works<br>
+-removed version number from package name.<br>
+-fixed a bug where a campaign with more than 7 maps would be reset in lobby map<br>
+-fixed a bug where the wrong slot would be reset when voting for an ingame created campaign<br>
+-fixed a rare bug that caused two campaign menus to open in lobby<br>
+<br>
+</span><span style="font-style: italic;">June 23rd 2005 - v1.4</span><br>
+-added support for lobby maps.<br>
+-changed how custom campaigns are defined. You can no longer specify them in Alienswarm.ini. Instead you must compile a class defining your campaign along with a .int file so the mutator can find it.<br>
+-Upsilon campaign updated. Made it use a lobby map, AO-Weaponfacility was dropped in favour of AO-Depot, and AO-Lostcontact was updated to AO-Lostcontact-SE8.<br>
+<br>
+24.apr.2005 - v1.35</span><br>
+-fixed some "typos" in mapnames for Upsilon campaign<br>
+-if a server doesn't have the maps listed in a campaign the campaign
+wont be added to the map vote menu<br>
+-custom predefined campaigns now start from AoCustMapInfoOne going up
+to AoCustMapInfoSeven<br>
+<br>
+<span style="font-style: italic;">26.jan.2005
+- v1.2</span><br>
+-fixed a bug that made a server running the mutator to disappear from
+the server browser list<br>
+-better parsing of map names when announcing a custom campaig<br>
+-added a "mutate CCInfo" command<br>
+<br>
+<span style="font-style: italic;">7.dec.2004
+- v110</span><br>
+-bAddToServerPackage=true in mutator so you don't have to add the
+ServerPackages line to Alienswarm.ini when running on a server<br>
+-added default DifficultyModifiers for ingame created campaigns<br>
+-wrote the predefined campaign info in the class file instead of the
+ini. This removes the need to supply the ini with the mutator, and
+allows server admins to run several servers on one installation.<br>
+-fixed a bug where you could overwrite the current campaign info if a
+vote for a new campaign failed<br>
+<br style="font-style: italic;">
+<span style="font-style: italic;">3.dec.2004<br>
+&nbsp;- First release</span><br>
+<br>
+<span style="font-weight: bold;">5. <a name="Credits"></a>Credits
+&amp; Contact</span><br>
+Coding by smattbac and Butters.<br>
+Thanks to Dalai and the rest of <a href="http://www.blackcatgames.com/">BCG</a> for including this mutator with Alienswarm v1.3.<br>
+And to everyone that has helped with testing.<br>
+<br>
+Feedback and bug reports can be directed to <a
+ href="mailto:smattbac@multi.fi">smattbac@multi.fi</a>
+or you can try and catch smattbac or Butters on the Alienswarm irc
+channels.<span style="font-weight: bold;"></span>
+</body>
+</html>
