@@ -1,18 +1,15 @@
-Alien Swarm V1.3
-================
+Alien Swarm V1.32 Patch
+=======================
 
-To install, first ensure your copy of UT2004 is patched to the most recent version.
-The latest UT2004 patch can be found here:
-http://www.beyondunreal.com/main/ut2004/ut2004essential.php
+This patch will take Alien Swarm version 1.3 up to version 1.32.
 
-
-Then extract this zip to your UT2004 folder.
+To install, extract this zip to your UT2004 folder.
 
 To play Alien Swarm, run UT2004\AlienSwarm\AlienSwarm.exe
 Linux users can run ./Alien-Swarm-Linux in the same directory.
 Alternatively, you can run UT2004 and use the Community -> Mods menu.
 
-Good luck marines.
+Good hunting marines.
 
 ================
 
@@ -73,6 +70,23 @@ Telic:
 http://www.telic-campaign.com/
 
 ================
+
+============================
+Alien Swarm 1.32 Patch Notes
+============================
+
+Increased size of the map voting lists from 64 up to 160, to support more custom campaigns and maps.
+Map voting lists scroll 1 page at a time and give you a counter, so you can more easily look through large numbers of maps.
+Fixed a movement bug introduced in 1.31 which caused jerky movement, especially when standing on elevators and other moving things.
+Included a fixed version of Telic Campaign's AO-TE-Daylight, which doesn't rely on the crouch radius bug to enter vents.
+
+============================
+Alien Swarm 1.31 Patch Notes
+============================
+
+Fixed an infinite ammo exploit.
+Fixed a server<->client desync movement exploit.
+Marine's collision radius no longer increases when you crouch.
 
 ===========================
 Alien Swarm 1.3 Patch Notes
