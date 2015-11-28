@@ -1,0 +1,1 @@
+start ..\System\ut2004.exe AOL-TelicCampaignLobby.ut2?Game=AoCustCamp.AoCCLobbyGameInfo?CustCampStr=AoTelicCamp.AoCCTelicCampaign?CampaignSlot=11?NewGame=Yes?SlotName=Telic?CampaignType=Custom?Mutator=AoTelicBeta.MutTelic -mod=AlienSwarm

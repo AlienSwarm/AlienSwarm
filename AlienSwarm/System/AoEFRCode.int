@@ -1,0 +1,2 @@
+[Public]
+Object=(Name=AoEFRCode.MutEFR,class=class,MetaClass=Engine.Mutator,Description="Extended Telic mutator, required to run EFR campaign")
